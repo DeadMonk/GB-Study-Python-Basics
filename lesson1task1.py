@@ -14,4 +14,7 @@ elif duration >= 60:
 else:
     print(duration, 'сек')
 
-print(duration % 60, duration % 3600 // 60)
+print(duration % 60, duration // 60 % 60, duration // 60 // 60, duration // 60 // 60 // 24)
+
+
+divisor = [86400, 3600, 60]
