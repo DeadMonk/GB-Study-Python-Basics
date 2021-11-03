@@ -2,7 +2,6 @@
 #!/usr/bin/python3
 
 duration = int(input('Введите количество секунд: '))
-# Решение №1
 divisor_list = [86400, 3600, 60, 1]
 unit_list = ['дн', 'час', 'мин', 'сек']
 result_string = ''

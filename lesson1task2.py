@@ -33,6 +33,7 @@ for cube in cube_list:
     if digit_amount % 7 == 0:
         amount += cube + 17
 print(amount)
+
 # Ниже представленно решение задачи исходя из предполжения, что добавить - операция конкатенации.
 amount = 0
 for cube in cube_list:
