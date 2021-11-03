@@ -5,6 +5,7 @@
 cube_list = []
 for base_degree in range(1, 1000, 2):
     cube_list.append(base_degree ** 3)
+print(cube_list)
 
 # Вычисление суммы пункт a.
 amount = 0
@@ -17,8 +18,6 @@ for cube in cube_list:
         number = number // 10
     if digit_amount % 7 == 0:
         amount += cube
-
-print(cube_list)
 print(amount)
 
 # Вычисление суммы пункт b. (В задании указано "К каждому элементу списка добавить 17".)
