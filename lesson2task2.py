@@ -22,7 +22,7 @@ while encounter < len(base_list):
                 start_digit = symbol_id
         if start_digit != None:
             have_digit = base_list[encounter]
-            base_list[encounter] = have_digit[:start_digit] + have_digit[start_digit:].zfill(2)
+            base_list[encounter] = f'{have_digit[:start_digit]}{have_digit[start_digit:].zfill(2)}'
             base_list.insert(encounter, '"')
             base_list.insert(encounter + 2, '"')
             encounter_list.append(encounter)
