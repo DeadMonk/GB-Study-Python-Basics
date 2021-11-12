@@ -1,29 +1,22 @@
 # -*- coding: utf-8 -*-
 # !/usr/bin/python3
 
-from lesson3task3 import thesaurus
 
 def thesaurus_adv(*args: str, sort=False):
-    fio_dict = {}
-    fio_list = args
     if sort:
-        tmp_list = []
-        for full_name in args:
-            tmp_list.append(full_name[full_name.find(' ') + 1])
-        tmp_list.sort()
-        for leter in tmp_list:
-            fio_dict.setdefault(leter, {})
-        fio_list = sorted(args)
-    for full_name in fio_list:
-        if fio_dict.get(full_name[full_name.find(' ') + 1]) == None:
-            fio_dict.setdefault(full_name[full_name.find(' ') + 1], thesaurus(full_name))
-        else:
-            if full_name[0] in fio_dict.get(full_name[full_name.find(' ') + 1]).keys():
-                fio_dict.get(full_name[full_name.find(' ') + 1]).get(full_name[0]).append(full_name)
-            else:
-                fio_dict.get(full_name[full_name.find(' ') + 1]).update({full_name[0]: full_name})
-    return fio_dict
-
-
-
-
+        fullname_dict = dict(map(lambda fn: (fn, {}), sorted(list(map(lambda pref: pref[pref.find(' ') + 1], args)))))
+        for sn_key, val in fullname_dict.items():
+            name_list = sorted(list(filter(lambda sn: sn[sn.find(' ') + 1] == sn_key, args)))
+            name_dict = dict(map(lambda nam: (nam[0], []), name_list))
+            for name in name_list:
+                name_dict.get(name[0]).append(name)
+            val.update(name_dict)
+    else:
+        fullname_dict = dict(map(lambda fn: (fn, {}), list(map(lambda pref: pref[pref.find(' ') + 1], args))))
+        for sn_key, val in fullname_dict.items():
+            name_list = list(filter(lambda sn: sn[sn.find(' ') + 1] == sn_key, args))
+            name_dict = dict(map(lambda nam: (nam[0], []), name_list))
+            for name in name_list:
+                name_dict.get(name[0]).append(name)
+            val.update(name_dict)
+    return fullname_dict
