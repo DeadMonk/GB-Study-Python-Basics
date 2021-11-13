@@ -16,7 +16,6 @@ def get_jokes(count=1, uniq=False):
     nouns = ["автомобиль", "лес", "огонь", "город", "дом"]
     adverbs = ["сегодня", "вчера", "завтра", "позавчера", "ночью"]
     adjectives = ["веселый", "яркий", "зеленый", "утопичный", "мягкий"]
-    joke_list = []
     if uniq:
         nouns = sample(nouns, 5)
         adverbs = sample(adverbs, 5)
