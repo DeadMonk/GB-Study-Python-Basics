@@ -63,5 +63,3 @@ def edit_record(file_name: str, rnum: int, new_value: str):
             dfile.buffer.truncate(fidx[rnum])
             dfile.buffer.write(new_value.encode('utf8'))
             dfile.buffer.write(buff_data)
-
-
