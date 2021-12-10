@@ -13,11 +13,8 @@ class Matrix:
         if len(self.matrix) != len(other.matrix) or len(self.matrix[0]) != len(other.matrix[0]):
             raise Exception('Матрицы имеют разные размерности')
         else:
+            result = []
             for l1, l2 in zip(self.matrix, other.matrix):
-                line = [ for el1, el2]
-
-
-
-m1 = Matrix(((1, 1, 1), (1, 1, 1), (1, 1, 1)))
-
-print(m1)
+                result.append( [el1 + el2 for el1, el2 in zip(l1, l2)] )
+            self.matrix = result
+            return self
