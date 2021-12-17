@@ -5,12 +5,31 @@
 from random import sample
 
 class Game:
-    def __init__(self):
+    def __init__(self, ct, pt):
         self.__rounds = sample(range(1, 91), 90)
+        self.player = pt
+        self.computer = ct
 
-    def round(self):
+    def run(self):
         for n in self.__rounds:
-            print(n)
+            print(f'Карточка игрока:\n{self.player}')
+            print(f'Карточка компьютера:\n{self.computer}')
+            print(f'Выпал номер {n}')
+            self.compmove(n)
+            self.usermove(n)
+            if self.computer.strikethrough or self.player.strikethrough:
+                print(f'Выйграл Игрок: {self.player.strikethrough}\nВыйграл Компьютер: {self.computer.strikethrough}')
+                break
+
+    def compmove(self, number):
+        if self.computer.checknumber(number):
+            self.computer -= number
+
+    def usermove(self, number):
+        ansver = input('Чтобы вычеркнуть число введите Y: ')
+        if ansver == 'y' or ansver == 'Y':
+            self.player -= number
+
 
 class NotInTicket(Exception):
     def __init__(self, txt):
@@ -32,46 +51,25 @@ class Ticket:
             result += '\n'
         return result
 
-    def __sub__(self, other):
+    def __isub__(self, other):
         if other in self.numbers:
             self.crossout.append(other)
+            return self
         else:
-            raise NotInTicket('Нет такого числа в карточке!')
+            raise NotInTicket('Нет такого числа в карточке! Вы проиграли.')
+
+    # def __isub__(self, other):
+    #     return self.__sub__(other)
+
+    def checknumber(self, number):
+        return number in self.numbers
 
     @property
     def strikethrough(self):
         return len(self.numbers) == len(self.crossout)
 
 
-
-
-
-
-
-
-
-
-
-
-"""
-На момент 14.12.2021 не смог закончить в связи с болезнью. Пока не получается реализовать код в ООП парадигме.
-
-    Объекты:
-            Билет
-            Игрок
-            Игра
-
-
-1. получаем билет
-2. объявляется номер из кубышки
-3. смотрим
-
-"""
-
-
-# for k, i in enumerate(sample(range(1, 91), 90), start=1, ):
-#     print(k, i)
-
-
 k1 = Ticket()
-print(k1.strikethrough)
+k2 = Ticket()
+game = Game(k1, k2)
+game.run()
