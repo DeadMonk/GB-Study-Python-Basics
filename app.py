@@ -35,6 +35,7 @@ class NotInTicket(Exception):
     def __init__(self, txt):
         self.txt = txt
 
+
 class Ticket:
     def __init__(self):
         self.numbers = sample(range(1, 91), 15)
